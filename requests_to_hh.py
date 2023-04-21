@@ -2,6 +2,7 @@ import requests
 
 
 def get_company_id(companies):
+    """Получает id компаний, список названий которых передан в функцию"""
     id_list = []
     for i in companies:
         response = requests.get(f"https://api.hh.ru/employers?text={i}").json()
@@ -11,6 +12,7 @@ def get_company_id(companies):
 
 
 def get_vacancies_link(ids):
+    """Получает единую ссылку на все вакансии компаний, список id которых передан в функцию"""
     vacancies_link_list = []
     for i in ids:
         id_response = requests.get(f"https://api.hh.ru/employers/{i}").json()
@@ -20,6 +22,7 @@ def get_vacancies_link(ids):
 
 
 def get_vacancies_number(links):
+    """Получает количество вакансий, опубликованных каждой компанией, из списка ссылок, переданных в функцию"""
     vacancies_number_list = []
     for i in links:
         vacancies_response = requests.get(f"{i}", params={'per_page': '100', 'page': 0}).json()
@@ -42,6 +45,7 @@ def get_salary(salary_info: dict):
 
 
 def get_vacancy_info(links):
+    """Полчает данные по вакансиям, опубликованных каждой компанией, из списка ссылок, переданных в функцию"""
     vacancies_info_list = []
     for i in links:
         vacancies_response = requests.get(f"{i}", params={'per_page': '100', 'page': 0}).json()

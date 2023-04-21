@@ -2,6 +2,7 @@ import psycopg2
 
 from requests_to_hh import *
 
+#Список компаний, по которым парсится информация
 companies_list = [
     'Yadro',
     'Selectel',
@@ -27,6 +28,7 @@ companies_dict_list = [dict(zip(keys, values)) for values in zipped]
 
 vacancies_info_list = get_vacancy_info(vacancies_link_list)
 
+#создание подключения к базе данных hh_postgres_db
 conn = psycopg2.connect(
     host="localhost",
     database="hh_postgres_db",
@@ -34,6 +36,7 @@ conn = psycopg2.connect(
     password="latino87Aruba@"
 )
 
+#заполнение таблиц базы hh_postgres_db данными, полученными с hh.ru
 try:
     with conn:
         with conn.cursor() as cur:

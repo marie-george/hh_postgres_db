@@ -1,5 +1,6 @@
 import psycopg2
 
+#создание подключения к базе данных hh_postgres_db
 conn = psycopg2.connect(
     host="localhost",
     database="hh_postgres_db",
@@ -7,6 +8,7 @@ conn = psycopg2.connect(
     password="latino87Aruba@"
 )
 
+#Создание таблиц companies и vacancy в базе данных hh_postgres_db
 try:
     with conn:
         with conn.cursor() as cur:
